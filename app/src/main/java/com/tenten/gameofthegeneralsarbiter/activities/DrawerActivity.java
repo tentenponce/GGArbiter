@@ -16,6 +16,7 @@ import android.view.Gravity;
 import android.view.MenuItem;
 
 import com.tenten.gameofthegeneralsarbiter.R;
+import com.tenten.gameofthegeneralsarbiter.fragments.AboutFragment;
 import com.tenten.gameofthegeneralsarbiter.fragments.HomeFragment;
 import com.tenten.gameofthegeneralsarbiter.fragments.SettingsFragment;
 
@@ -27,6 +28,9 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
 
     public static final String HOME_TITLE = "GGArbiter";
     public static final String SETTINGS_TITLE = "Settings";
+    public static final String ABOUT_TITLE = "About";
+
+    public static final int HOME = 0;
 
     private DrawerLayout drawerLayout;
 
@@ -45,6 +49,8 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
         setSupportActionBar(toolbar);
 
         onCreateDrawer();
+
+        navigationView.getMenu().getItem(HOME).setChecked(true);
         setupFragment(HomeFragment.class, HOME_TITLE);
     }
 
@@ -124,6 +130,10 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
                 fragmentClass = SettingsFragment.class;
                 title = SETTINGS_TITLE;
                 break;
+            case R.id.nav_about:
+                fragmentClass = AboutFragment.class;
+                title = ABOUT_TITLE;
+                break;
         }
         
         if (fragmentClass != null) {
@@ -149,12 +159,6 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
                     fade.setDuration(1000);
                     if (fragment != null) {
                         fragment.setEnterTransition(fade);
-                    }
-
-                    Slide slide = new Slide(Gravity.BOTTOM);
-                    slide.setDuration(500);
-                    if (fragment != null) {
-                        fragment.setExitTransition(slide);
                     }
                 }
             }

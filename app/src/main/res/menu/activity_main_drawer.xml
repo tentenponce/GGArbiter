@@ -6,7 +6,7 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/home"
-            android:title="Home" />
+            android:title="Play!" />
     </group>
 
     <group
@@ -16,5 +16,10 @@
             android:id="@+id/nav_settings"
             android:icon="@drawable/settings_gray"
             android:title="Settings" />
+
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/about_gray"
+            android:title="About" />
     </group>
 </menu>

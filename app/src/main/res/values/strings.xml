@@ -2,4 +2,6 @@
     <string name="app_name">Game of the Generals Arbiter</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
+    <string name="about_title">Game of the Generals Arbiter</string>
+    <string name="about_msg">Tired of calling a person to play as an arbiter for your Game of the Generals Game? GGArbiter is your solution!\n\nAn electronic arbiter that will determine the winner in your game. Plus, it has no emotions for your enemy to tell what\'s that piece he is getting fight into :P\n(Just please, don\'t cheat)</string>
 </resources>
