@@ -19,8 +19,8 @@ public class Player {
     private static final String PLAYER_1_COLOR_KEY = "player_1_color";
     private static final String PLAYER_2_COLOR_KEY = "player_2_color";
 
-    private static final String DEFAULT_PLAYER_1_NAME = "Player 1";
-    private static final String DEFAULT_PLAYER_2_NAME = "Player 2";
+    public static final String DEFAULT_PLAYER_1_NAME = "Player 1";
+    public static final String DEFAULT_PLAYER_2_NAME = "Player 2";
 
     private String name;
     private Piece piece;

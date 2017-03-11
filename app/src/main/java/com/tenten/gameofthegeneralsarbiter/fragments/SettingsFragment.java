@@ -87,7 +87,14 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         LinearLayout linear_parent = new LinearLayout(getContext());
         edit_player_name = new AppCompatEditText(getContext());
 
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        );
+
         linear_parent.setPadding(20, 10, 20, 10);
+
+        edit_player_name.setLayoutParams(layoutParams);
         linear_parent.addView(edit_player_name);
 
         changeNameDialog = new AlertDialog.Builder(getContext())
@@ -104,7 +111,20 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
                         initDatas();
                     }
-                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                })
+                .setNeutralButton("Clear", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if (isPlayer1) { //check if the dialog is for player 1's name
+                            Player.setPlayer1Name(getContext(), Player.DEFAULT_PLAYER_1_NAME);
+                        } else { //otherwise it's for player 2
+                            Player.setPlayer2Name(getContext(), Player.DEFAULT_PLAYER_2_NAME);
+                        }
+
+                        initDatas();
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
