@@ -1,12 +1,13 @@
 package com.tenten.gameofthegeneralsarbiter.fragments;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
@@ -37,7 +38,7 @@ public class HomeFragment extends Fragment implements PieceAdapter.OnPieceClickL
     private Player player2 = new Player("Player 2");
 
     private PieceAdapter pieceAdapter;
-    private Snackbar fightMsgSnackBar;
+    private AlertDialog winnerDialog;
 
     private Toolbar toolbar;
 
@@ -55,6 +56,15 @@ public class HomeFragment extends Fragment implements PieceAdapter.OnPieceClickL
         super.onCreate(savedInstanceState);
 
         pieceAdapter = new PieceAdapter(this);
+        /*init winner dialog*/
+        winnerDialog = new AlertDialog.Builder(getContext())
+                .setTitle("Winner")
+                .setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                }).create();
     }
 
     @Override
@@ -129,10 +139,6 @@ public class HomeFragment extends Fragment implements PieceAdapter.OnPieceClickL
     private void togglePiecePlay(Piece piece) {
         if (player1.getPiece() == null) { //check if player 1 has picked piece
             player1.setPiece(piece); //set the selected piece to player 1
-
-            if (fightMsgSnackBar != null) {
-                fightMsgSnackBar.dismiss();
-            }
         } else {
             player2.setPiece(piece); //otherwise set the selected piece to player 2
 
@@ -143,14 +149,15 @@ public class HomeFragment extends Fragment implements PieceAdapter.OnPieceClickL
                 fightMsg = "Both Piece Dies";
             } else {
                 if (winPiece == player1.getPiece()) { //check if the win piece is equals to the player 1 piece
-                    fightMsg = player1.getName() + " wins.";
+                    fightMsg = Player.getPlayer1Name(getContext()) + " wins.";
                 } else {
-                    fightMsg = player2.getName() + " wins.";
+                    fightMsg = Player.getPlayer2Name(getContext()) + " wins.";
                 }
             }
 
-            fightMsgSnackBar = Snackbar.make(coor_main, fightMsg, Snackbar.LENGTH_INDEFINITE);
-            fightMsgSnackBar.show();
+            winnerDialog.setMessage(fightMsg);
+            winnerDialog.show();
+
             resetPlay();
         }
 
