@@ -23,24 +23,14 @@ public class Piece {
     public static final int PRIVATE = 0;
     public static final int FLAG = -1;
 
-    private int image;
     private String name;
     private int position;
     private int icon;
 
-    public Piece(int image, String name, int position, int icon) {
-        this.image = image;
+    public Piece(String name, int position, int icon) {
         this.name = name;
         this.position = position;
         this.icon = icon;
-    }
-
-    public int getImage() {
-        return image;
-    }
-
-    public void setImage(int image) {
-        this.image = image;
     }
 
     public String getName() {
