@@ -154,6 +154,8 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                             materialColor.getHexColor()
                     )) {
                         Player.setPlayer1Color(getContext(), materialColor.getHexColor());
+
+                        initDatas();
                     } else {
                         Snackbar.make(coor_settings, "Nope. Same color makes you crazy.", Snackbar.LENGTH_LONG).show();
                     }
@@ -168,6 +170,8 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                             materialColor.getHexColor()
                     )) {
                         Player.setPlayer2Color(getContext(), materialColor.getHexColor());
+
+                        initDatas();
                     } else {
                         Snackbar.make(coor_settings, "Nope. Same color makes you crazy.", Snackbar.LENGTH_LONG).show();
                     }
