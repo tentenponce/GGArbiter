@@ -148,12 +148,25 @@ public class HomeFragment extends Fragment implements PieceAdapter.OnPieceClickL
             if (winPiece == null) { //null means the piece is the same
                 fightMsg = "Both Piece Dies";
             } else {
+                boolean isFlag = false;
                 if (winPiece.getPosition() == Piece.FLAG) { //if the winner is a flag
                     fightMsg = "The aggressive/attacker flag wins."; //message that the attacker wins because the system cannot detect neither the attacker nor the defender
                 } else if (winPiece == player1.getPiece()) { //check if the win piece is equals to the player 1 piece
                     fightMsg = Player.getPlayer1Name(getContext()) + " wins.";
+
+                    if (player2.getPiece().getPosition() == Piece.FLAG) {
+                        isFlag = true;
+                    }
                 } else {
                     fightMsg = Player.getPlayer2Name(getContext()) + " wins.";
+
+                    if (player1.getPiece().getPosition() == Piece.FLAG) {
+                        isFlag = true;
+                    }
+                }
+
+                if (isFlag) {
+                    fightMsg = "Flag captured. " + fightMsg;
                 }
             }
 
